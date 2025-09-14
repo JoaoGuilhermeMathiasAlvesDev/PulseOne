@@ -1,0 +1,6 @@
+@Apresentation.PulseOne_HostAddress = http://localhost:5286
+
+GET {{Apresentation.PulseOne_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
