@@ -12,10 +12,10 @@ namespace Dominio.PulseOne.Entiteis
 
         public Usuario(string email,string senha,int perfilEnum)
         {
-            
+            DefinirDados(email,senha, perfilEnum);
         }
 
-        public void DefinirDados(string nome, string email, string senha, int perfilInt)
+        public void DefinirDados( string email, string senha, int perfilInt)
         {
 
             if (string.IsNullOrWhiteSpace(email) || !email.Contains("@"))
