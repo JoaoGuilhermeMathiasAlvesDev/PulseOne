@@ -59,7 +59,6 @@ namespace Dominio.PulseOne.Entiteis
 
                 troco = valorPago - totalDoAtendimento;
             }
-
             else 
             {
                 if (valorPago != totalDoAtendimento)
