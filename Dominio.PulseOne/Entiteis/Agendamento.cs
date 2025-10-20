@@ -13,7 +13,7 @@ namespace Dominio.PulseOne.Entiteis
         public Profissional Profissional { get;private set; }
 
         public Guid ServicoId { get;private set; }
-        public Servicos Servicos { get; set; }
+        public Servico Servicos { get; set; }
 
         public DateTime DataHora { get;private set; }
 

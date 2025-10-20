@@ -13,7 +13,7 @@ namespace Dominio.PulseOne.Entiteis
         public Cliente Cliente { get; private set; }
         public Guid AgendametnoId { get; private set; }
         public Agendamento agendamento { get; private set; }
-        public ICollection<Servicos> Servicos { get; private set; }
+        public ICollection<Servico> Servicos { get; private set; }
         public ICollection<Produto> Produtos { get; private set; }
 
         public bool Finalizado { get; set; }
@@ -33,7 +33,7 @@ namespace Dominio.PulseOne.Entiteis
             AgendametnoId = agendamento;
         }
 
-        public void AdcionarServico(Servicos servicos)
+        public void AdcionarServico(Servico servicos)
         {
             if (servicos == null) throw new ArgumentNullException("Por favor, Precisa escolher um serviço");
 

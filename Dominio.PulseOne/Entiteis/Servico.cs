@@ -7,20 +7,20 @@ using System.Threading.Tasks;
 
 namespace Dominio.PulseOne.Entiteis
 {
-    public class Servicos : EntityBase
+    public class Servico : EntityBase
     {
         public string Nome { get; private set; }
         public double Preco { get; private set; }
         public int Duracao { get; private set; }
 
-        public Servicos(string nome, double preco)
+        public Servico(string nome, double preco)
         {
              DefinirSerivco(nome, preco);
         }
 
         public void DefinirSerivco(string nome, double preco)
         {
-            if (nome == string.Empty)
+            if (string.IsNullOrWhiteSpace(nome))
                 throw new ArgumentNullException("Serviço precisa de um Nome.");
 
             if (preco == 0)
