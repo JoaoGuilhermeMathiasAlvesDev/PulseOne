@@ -27,7 +27,7 @@ namespace Dominio.PulseOne.Entiteis
             if (string.IsNullOrWhiteSpace(nome))
                 throw new ArgumentException("Nome do estabelecimento não pode ser vazio.");
 
-            if (endereco == null)
+            if (endereco is null)
                 throw new ArgumentNullException(nameof(endereco), "Endereço é obrigatório.");
 
             Nome = nome;

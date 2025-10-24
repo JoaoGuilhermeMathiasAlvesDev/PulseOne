@@ -40,6 +40,7 @@ namespace Dominio.PulseOne.Entiteis
             ProfissionalId = profissionalId;
             ServicoId = servicoId;
             Status = (StatusCliente)status;
+            DataHora = datahora;
         }
 
         public void StatusCliente(int status) => Status = (StatusCliente)status;
