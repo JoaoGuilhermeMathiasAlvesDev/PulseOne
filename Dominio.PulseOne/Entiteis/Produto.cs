@@ -25,10 +25,10 @@ namespace Dominio.PulseOne.Entiteis
             if (estoque < 0)
                 throw new ArgumentException("Estoque tem que ser maior que zero.");
 
-            if (preco == 0)
+            if (preco <= 0)
                 throw new ArgumentException("Produto precisa ter um preço.");
 
-            Preco = preco;
+            Nome = nome;
             Estoque = estoque;
             Preco = preco;
             Disponivel = true;
