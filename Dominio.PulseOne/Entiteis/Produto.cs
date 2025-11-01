@@ -34,24 +34,24 @@ namespace Dominio.PulseOne.Entiteis
             Disponivel = true;
         }
 
-        public int RetiraDoEstoque(int quantidadeNoEstoque, int quantidadDePedidos)
+        public void RetiraDoEstoque(int quantidadDePedidos)
         {
-            if (quantidadDePedidos < 0)
+            if (quantidadDePedidos <= 0)
                 throw new ArgumentException("A quantidade de pedido deve ser maior que zero.");
 
-            if (quantidadeNoEstoque < quantidadDePedidos)
+            if (Estoque < quantidadDePedidos)
                 throw new ArgumentException("A quantidade de pedido não pode ser maior que quandidade de produto no estoque.");
 
-            var novaQuantidade = quantidadeNoEstoque - quantidadDePedidos;
+            var novaQuantidade = Estoque - quantidadDePedidos;
 
-            return novaQuantidade;
+            Estoque = novaQuantidade;
         }
 
-        public int AdiconarNoEstoque(int quantidadeNoEstoque,int quandiadeParaAcrescentar)
+        public void AdiconarNoEstoque(int quandiadeParaAcrescentar)
         {
-            var novaQuantidade = quantidadeNoEstoque + quandiadeParaAcrescentar;
+            var novaQuantidade = Estoque + quandiadeParaAcrescentar;
 
-            return novaQuantidade;
+            Estoque = novaQuantidade;
         }
 
         public bool ProdutoDisponivel() => Disponivel = true;

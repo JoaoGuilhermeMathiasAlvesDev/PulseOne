@@ -64,7 +64,7 @@ namespace TestDominio
         public void AdiconarProdutoExeceptionNoPreco(double valor, string mensagemException)
         {
             Action act = () => new Produto(_nome, valor, _quantidade);
-            
+
             var ex = Assert.Throws<ArgumentException>(act);
 
             Assert.Contains(mensagemException, ex.Message);
@@ -81,6 +81,69 @@ namespace TestDominio
 
             Assert.Contains(mensagemException, ex.Message);
         }
+
+        [Theory]
+        [InlineData(2)]
+        [InlineData(3)]
+        public void AdiconarProdutoCorretamente_RetirarProduto(int retirar)
+        {
+            var novoProduto = new Produto(_nome, _preco, _quantidade);
+
+            novoProduto.RetiraDoEstoque(retirar);
+            if (retirar == 2)
+                Assert.Equal(1, novoProduto.Estoque);
+            else
+            {
+                Assert.Equal(0, novoProduto.Estoque);
+            }
+
+        }
+
+
+        [Theory]
+        [InlineData(0, "A quantidade de pedido deve ser maior que zero.")]
+        [InlineData(-1, "A quantidade de pedido deve ser maior que zero.")]
+        public void AdiconarProdutoCorretamente_RetirarProduto_Excption(int retirar, string mensagemExcption)
+        {
+            var produto = new Produto(_nome, _preco, _quantidade);
+
+            Action act = () => produto.RetiraDoEstoque(retirar);
+
+            var ex = Assert.Throws<ArgumentException>(act);
+
+            Assert.Contains(mensagemExcption, ex.Message);
+        }
+
+        [Theory]
+        [InlineData(2, "A quantidade de pedido não pode ser maior que quandidade de produto no estoque.")]
+        public void AdiconarProdutoCorretamente_RetirarProduto_valorNoEstoqueEMenor_Excption(int retirar, string mensagemExcption)
+        {
+            var produto = new Produto(_nome, _preco, 1);
+
+            Action act = () => produto.RetiraDoEstoque(retirar);
+
+            var ex = Assert.Throws<ArgumentException>(act);
+
+            Assert.Contains(mensagemExcption, ex.Message);
+        }
+
+
+        [Theory]
+        [InlineData(2)]
+        [InlineData(3)]
+        public void AdiconarProdutoCorretamente_adiconarProduto(int adicionar)
+        {
+            var novoProduto = new Produto(_nome, _preco, _quantidade);
+
+            novoProduto.AdiconarNoEstoque(adicionar);
+            if (adicionar == 2)
+                Assert.Equal(5, novoProduto.Estoque);
+            else
+            {
+                Assert.Equal(6, novoProduto.Estoque);
+            }
+        }
+
 
     }
 }
