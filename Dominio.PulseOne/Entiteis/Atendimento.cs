@@ -13,8 +13,8 @@ namespace Dominio.PulseOne.Entiteis
         public Cliente Cliente { get; private set; }
         public Guid AgendametnoId { get; private set; }
         public Agendamento agendamento { get; private set; }
-        public ICollection<Servico> Servicos { get; private set; }
-        public ICollection<Produto> Produtos { get; private set; }
+        public ICollection<Servico> Servicos { get;  set; }
+        public ICollection<Produto> Produtos { get; set; }
 
         public bool Finalizado { get; set; }
 
@@ -30,7 +30,10 @@ namespace Dominio.PulseOne.Entiteis
             if (agendamento == Guid.Empty) throw new ArgumentNullException("Precisa existir uma Agendamento.");
 
             ClienteId = cliente;
-            AgendametnoId = agendamento;
+            AgendametnoId = agendamento;   
+            
+            Servicos = new List<Servico>();
+            Produtos = new List<Produto>();
         }
 
         public void AdcionarServico(Servico servicos)
@@ -40,7 +43,7 @@ namespace Dominio.PulseOne.Entiteis
             Servicos.Add(servicos);
         }
 
-        public void Adicionar(Produto produto)
+        public void AdicionarProduto(Produto produto)
         {
             Produtos.Add(produto);
         }
