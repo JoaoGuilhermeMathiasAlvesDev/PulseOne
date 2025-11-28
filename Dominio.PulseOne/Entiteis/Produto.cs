@@ -13,14 +13,16 @@ namespace Dominio.PulseOne.Entiteis
         public string  Nome { get; private set ; }
         public double Preco { get;private set; }
         public int Estoque { get;private set; }
+        public Guid CategoriaId { get;private set; }
+        public Categoria Categoria { get; set; }
         public bool Disponivel { get; private set; }
 
-        public Produto(string nome, double preco, int estoque)
+        public Produto(string nome, double preco, int estoque,Guid categoriaId)
         {
-            DefinirDados(nome, preco, estoque);
+            DefinirDados(nome, preco, estoque,categoriaId);
         }
 
-        public void DefinirDados(string nome, double preco, int estoque)
+        public void DefinirDados(string nome, double preco, int estoque ,Guid categoriaId)
         {
             if (estoque < 0)
                 throw new ArgumentException("Estoque tem que ser maior que zero.");
@@ -30,6 +32,7 @@ namespace Dominio.PulseOne.Entiteis
 
             Nome = nome;
             Estoque = estoque;
+            CategoriaId= categoriaId;   
             Preco = preco;
             Disponivel = true;
         }
