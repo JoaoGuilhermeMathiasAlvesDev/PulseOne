@@ -13,27 +13,30 @@ namespace TestDominio
         private readonly int _quantidade = 3;
         private readonly double _preco = 45.50;
         private readonly bool _disponivel = true;
+        private readonly Guid _categoria;
 
         [Fact]
         public void AdiconarProdutoCorretamente()
         {
-            var novoProduto = new Produto(_nome, _preco, _quantidade);
+            var novoProduto = new Produto(_nome, _preco, _quantidade,_categoria);
 
             Assert.NotNull(novoProduto);
             Assert.Equal(_preco, novoProduto.Preco);
             Assert.Equal(_nome, novoProduto.Nome);
             Assert.Equal(_quantidade, novoProduto.Estoque);
+            Assert.Equal(_categoria, novoProduto.CategoriaId);
         }
 
         [Fact]
         public void AdiconarProdutoCorretamenteDisponibilizandoSendoFalso()
         {
-            var novoProduto = new Produto(_nome, _preco, _quantidade);
+            var novoProduto = new Produto(_nome, _preco, _quantidade, _categoria);
 
             Assert.NotNull(novoProduto);
             Assert.Equal(_preco, novoProduto.Preco);
             Assert.Equal(_nome, novoProduto.Nome);
             Assert.Equal(_quantidade, novoProduto.Estoque);
+            Assert.Equal(_categoria, novoProduto.CategoriaId);
 
             novoProduto.ProdutoIndisponivel();
 
@@ -43,12 +46,13 @@ namespace TestDominio
         [Fact]
         public void AdiconarProdutoCorretamentesSentandoComTrue()
         {
-            var novoProduto = new Produto(_nome, _preco, _quantidade);
+            var novoProduto = new Produto(_nome, _preco, _quantidade, _categoria);
 
             Assert.NotNull(novoProduto);
             Assert.Equal(_preco, novoProduto.Preco);
             Assert.Equal(_nome, novoProduto.Nome);
             Assert.Equal(_quantidade, novoProduto.Estoque);
+            Assert.Equal(_categoria, novoProduto.CategoriaId);
 
             novoProduto.ProdutoIndisponivel();
             Assert.False(novoProduto.Disponivel);
@@ -63,7 +67,7 @@ namespace TestDominio
         [InlineData(0.00, "Produto precisa ter um preço.")]
         public void AdiconarProdutoExeceptionNoPreco(double valor, string mensagemException)
         {
-            Action act = () => new Produto(_nome, valor, _quantidade);
+            Action act = () => new Produto(_nome, valor, _quantidade, _categoria);
 
             var ex = Assert.Throws<ArgumentException>(act);
 
@@ -75,7 +79,7 @@ namespace TestDominio
         [InlineData(-1, "Estoque tem que ser maior que zero.")]
         public void AdiconarProdutoExeceptionNoEstoque(int quantidade, string mensagemException)
         {
-            Action act = () => new Produto(_nome, _preco, quantidade);
+            Action act = () => new Produto(_nome, _preco, quantidade, _categoria);
 
             var ex = Assert.Throws<ArgumentException>(act);
 
@@ -87,7 +91,7 @@ namespace TestDominio
         [InlineData(3)]
         public void AdiconarProdutoCorretamente_RetirarProduto(int retirar)
         {
-            var novoProduto = new Produto(_nome, _preco, _quantidade);
+            var novoProduto = new Produto(_nome, _preco, _quantidade, _categoria);
 
             novoProduto.RetiraDoEstoque(retirar);
             if (retirar == 2)
@@ -105,7 +109,7 @@ namespace TestDominio
         [InlineData(-1, "A quantidade de pedido deve ser maior que zero.")]
         public void AdiconarProdutoCorretamente_RetirarProduto_Excption(int retirar, string mensagemExcption)
         {
-            var produto = new Produto(_nome, _preco, _quantidade);
+            var produto = new Produto(_nome, _preco, _quantidade, _categoria);
 
             Action act = () => produto.RetiraDoEstoque(retirar);
 
@@ -118,7 +122,7 @@ namespace TestDominio
         [InlineData(2, "A quantidade de pedido não pode ser maior que quandidade de produto no estoque.")]
         public void AdiconarProdutoCorretamente_RetirarProduto_valorNoEstoqueEMenor_Excption(int retirar, string mensagemExcption)
         {
-            var produto = new Produto(_nome, _preco, 1);
+            var produto = new Produto(_nome, _preco, 1, _categoria);
 
             Action act = () => produto.RetiraDoEstoque(retirar);
 
@@ -133,7 +137,7 @@ namespace TestDominio
         [InlineData(3)]
         public void AdiconarProdutoCorretamente_adiconarProduto(int adicionar)
         {
-            var novoProduto = new Produto(_nome, _preco, _quantidade);
+            var novoProduto = new Produto(_nome, _preco, _quantidade, _categoria);
 
             novoProduto.AdiconarNoEstoque(adicionar);
             if (adicionar == 2)

@@ -12,6 +12,7 @@ namespace TestDominio
     {
         private readonly Guid _clienteId;
         private readonly Guid _agendamentoId;
+        private readonly Guid _categoria;
 
         public AtendimentoTest()
         {
@@ -59,7 +60,7 @@ namespace TestDominio
         public void AdcionarServico_DeveAdicionarProdutoLista()
         {
             var atendimento = new Atendimento(_clienteId, _agendamentoId);
-            var produtos = new Produto("Oleo de motor ", 32.50,20);
+            var produtos = new Produto("Oleo de motor ", 32.50,20,_categoria);
 
             atendimento.AdicionarProduto(produtos);
 

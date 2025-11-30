@@ -10,7 +10,7 @@ namespace Dominio.PulseOne.Entiteis
     public class Categoria : EntityBase
     {
         public string Nome { get; private set; }
-        public bool Ativa { get;private set; }
+        public bool Ativo { get;private set; }
         public int Codigo { get;private set; }
         public ICollection<Produto> Produtos { get; set; }
 
@@ -22,12 +22,12 @@ namespace Dominio.PulseOne.Entiteis
 
         public void DefinirCategoria(string nome)
         {
-            if (string.IsNullOrEmpty(nome))
+            if (string.IsNullOrWhiteSpace(nome))
                 throw new ArgumentException("Categoria Precisa ter uma nome.");
 
             Nome  = nome;
             Codigo = 0;
-            Ativa = true;
+            Ativo = true;
 
             Produtos = new List<Produto>();
         }
@@ -43,9 +43,9 @@ namespace Dominio.PulseOne.Entiteis
             }
         }
 
-        public bool Desativar() => Ativa = false;   
+        public bool Desativar() => Ativo = false;   
 
-        public bool Ativar() => Ativa = true;
+        public bool Ativar() => Ativo = true;
 
     }
 }
