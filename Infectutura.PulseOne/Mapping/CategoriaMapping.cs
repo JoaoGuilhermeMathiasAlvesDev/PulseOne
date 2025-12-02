@@ -18,6 +18,10 @@ namespace Infectutura.PulseOne.Mapping
 
             builder.HasKey(c => c.Id);
 
+            builder.Property(c => c.Nome)
+                .IsRequired()
+                .HasMaxLength(100);
+
             builder.Property(c => c.Ativo)
                 .IsRequired();
 
