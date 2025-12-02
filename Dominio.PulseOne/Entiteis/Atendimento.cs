@@ -50,7 +50,7 @@ namespace Dominio.PulseOne.Entiteis
 
         public bool Finalizar(bool finalizar) => Finalizado = true;
 
-        public double ValorTotla()
+        public double ValorTotal()
         {
 
             double valorProdutoTotal = this.Produtos?.Sum(p => p.Preco) ?? 0.0;

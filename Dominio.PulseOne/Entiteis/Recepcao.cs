@@ -50,9 +50,9 @@ namespace Dominio.PulseOne.Entiteis
                 throw new InvalidOperationException("Precisa ter Uma Atenidmento.");
 
 
-            var totalDoAtendimento = this.Atendimento.ValorTotla();
+            var totalDoAtendimento = this.Atendimento.ValorTotal();
 
-            if (formaDePagmento == ((int)FormaPagamentoEnum.Dinehiro))
+            if (formaDePagmento == ((int)FormaPagamentoEnum.Dinheiro))
             {
                 if (valorPago < totalDoAtendimento)
                     throw new ArgumentException("O Valor do Pagmento tem que ser maior que Total do Atendimento");

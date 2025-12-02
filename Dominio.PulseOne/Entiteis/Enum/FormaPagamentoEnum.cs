@@ -8,9 +8,9 @@ namespace Dominio.PulseOne.Entiteis.Enum
 {
     public enum FormaPagamentoEnum
     {
-       Credito = 0,
-       Debito = 1,
-       Pix = 2,
-       Dinehiro= 3,
+        Credito = 0,
+        Debito = 1,
+        Pix = 2,
+        Dinheiro = 3,
     }
 }
