@@ -8,7 +8,7 @@ namespace Dominio.PulseOne.Entiteis.ObjectValue
 {
     public class Endereco
     {
-        public string Rua { get; private set; }
+        public string Logradouro { get; private set; }
         public string Numero { get; private set; }
         public string Cidade { get; private set; }
         public string Estado { get; private set; }
@@ -17,7 +17,7 @@ namespace Dominio.PulseOne.Entiteis.ObjectValue
         public Endereco(string rua, string numero, string cidade, string estado, string cep)
         {
             //todo  Validações aqui
-            Rua = rua;
+            Logradouro = rua;
             Numero = numero;
             Cidade = cidade;
             Estado = estado;

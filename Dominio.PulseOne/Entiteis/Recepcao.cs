@@ -11,7 +11,7 @@ namespace Dominio.PulseOne.Entiteis
 {
     public class Recepcao : EntityBase
     {
-        public Guid AtenimentoId { get; private set; }
+        public Guid AtendimentoId { get; private set; }
         public Atendimento Atendimento { get; private set; }
 
         public FormaPagamentoEnum FormaPagamento { get; private set; }
@@ -30,7 +30,7 @@ namespace Dominio.PulseOne.Entiteis
         {
             if (atendimentoId == Guid.Empty) throw new ArgumentNullException("Selecione Uma Atendimento Finalizado.");
 
-            AtenimentoId = atendimentoId;
+            AtendimentoId = atendimentoId;
         }
 
         public FormaPagamentoEnum FormaDePagamento(int formaPagamento)
