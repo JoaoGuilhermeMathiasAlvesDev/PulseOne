@@ -19,9 +19,9 @@ namespace Infectutura.PulseOne.Mapping
 
             builder.Property(x => x.Nome).HasMaxLength(200).IsRequired();
 
-            builder.Property(x => x.Preco).IsRequired();
+            builder.Property(x => x.Preco).HasColumnType("decimal(18,2)").IsRequired();
             
-            builder.Property(x => x.Estoque).IsRequired();
+            builder.Property(x => x.Estoque).HasColumnType("decimal(18,2)").IsRequired();
 
             builder.Property(x => x.Disponivel);
 
