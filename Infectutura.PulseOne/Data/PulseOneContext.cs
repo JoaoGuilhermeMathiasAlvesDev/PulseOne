@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Infectutura.PulseOne.Data
 {
-    public class PluseOneContext : DbContext
+    public class PulseOneContext : DbContext
     {
-        public PluseOneContext(DbContextOptions<PluseOneContext>options) :base(options) { }
+        public PulseOneContext(DbContextOptions<PulseOneContext>options) :base(options) { }
         public DbSet<Agendamento> Agendamentos { get; set; }
         public DbSet<Atendimento> Atendimentos { get; set; }
         public DbSet<Categoria> Categorias { get; set; }
@@ -26,7 +26,7 @@ namespace Infectutura.PulseOne.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(PluseOneContext).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(PulseOneContext).Assembly);
 
             foreach (var relationship in modelBuilder.Model.GetEntityTypes()
                 .SelectMany(e => e.GetForeignKeys()))

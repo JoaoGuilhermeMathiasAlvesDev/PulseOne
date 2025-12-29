@@ -11,9 +11,9 @@ namespace Infectutura.PulseOne.Reposotory
 {
     public class RepositoryBase<T> : IRepositoryBase<T> where T : class
     {
-        private readonly PluseOneContext _context;
+        private readonly PulseOneContext _context;
 
-        public RepositoryBase(PluseOneContext context)
+        public RepositoryBase(PulseOneContext context)
         {
             _context = context;
         }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Infectutura.PulseOne.IRepository
 {
-    public interface IFinacerioRepository : IRepositoryBase<Financerio>
+    public interface IFinancerioRepository : IRepositoryBase<Financerio>
     {
     }
 }

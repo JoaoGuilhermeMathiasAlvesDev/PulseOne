@@ -14,7 +14,7 @@ namespace Infectutura.Ioc.PulseOne
     public static class ConfiguracaoInjecaoConexaoDB
     {
         public static void BancoDados(this IServiceCollection services, IConfiguration configuration) =>
-            services.AddDbContext <PluseOneContext> (options =>
+            services.AddDbContext <PulseOneContext> (options =>
             options.UseSqlServer(configuration.GetConnectionString(configuration.GetConnectionString(""));
 
        
