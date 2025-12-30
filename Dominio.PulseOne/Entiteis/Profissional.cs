@@ -12,6 +12,8 @@ namespace Dominio.PulseOne.Entiteis
         public Funcionario Funcionario { get; set; }
         public Guid FuncionarioId { get; set; }
 
+        protected Profissional() { }
+
         public Profissional(Guid funcionarioId)
         {
             DefinirProfissional(funcionarioId);

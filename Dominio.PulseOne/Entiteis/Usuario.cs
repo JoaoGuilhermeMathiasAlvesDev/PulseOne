@@ -11,6 +11,8 @@ namespace Dominio.PulseOne.Entiteis
         public string Senha {  get;private set; }
         public PerfilEnum Perfil { get; set; }
 
+        protected Usuario() { }
+
         public Usuario(string email,string senha,int perfilEnum)
         {
             DefinirDados(email,senha, perfilEnum);

@@ -19,6 +19,8 @@ namespace Dominio.PulseOne.Entiteis
         public double Comissao { get; private set; }
         public DateTime DataReferente { get; private set; }
 
+        protected Financerio() { }
+
         public Financerio(Guid profissionalId, double lucro)
         {
             DefinirFinacerio(profissionalId, lucro);

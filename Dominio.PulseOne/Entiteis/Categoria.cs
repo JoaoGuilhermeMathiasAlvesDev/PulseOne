@@ -14,6 +14,8 @@ namespace Dominio.PulseOne.Entiteis
         public int Codigo { get;private set; }
         public ICollection<Produto> Produtos { get; set; }
 
+        protected Categoria() { }
+
         public Categoria(string Nome)
         {
             DefinirCategoria(Nome);

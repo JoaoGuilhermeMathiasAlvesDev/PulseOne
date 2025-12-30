@@ -1,6 +1,7 @@
 ﻿using Dominio.PulseOne.Entiteis.Base;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -13,6 +14,8 @@ namespace Dominio.PulseOne.Entiteis
         public string Nome { get;private set; }
         public string NumeroTelefone { get;private set; }
         public string Email { get;private set; }
+
+        protected Cliente() { }
 
         public Cliente( string nome,string numeroTelefone,string email)
         {

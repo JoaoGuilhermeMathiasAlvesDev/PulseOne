@@ -17,6 +17,8 @@ namespace Dominio.PulseOne.Entiteis
         public Guid EstabelecimentoId { get; private set; }
         public Estabelecimento Estabelecimento { get; private set; }
 
+        protected Funcionario() { }
+
         public Funcionario(string nome, Guid usuarioId,Guid estabelecimentoId)
         {
             DefinirFuncionario(nome,usuarioId,estabelecimentoId);

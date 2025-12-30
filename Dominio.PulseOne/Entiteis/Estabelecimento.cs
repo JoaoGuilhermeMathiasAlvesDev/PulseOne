@@ -15,6 +15,8 @@ namespace Dominio.PulseOne.Entiteis
         public ICollection<Funcionario> Funcionarios { get; private set; }
 
 
+        protected Estabelecimento() { }
+
         public Estabelecimento(string nome, Endereco endereco)
         {
             Funcionarios = new List<Funcionario>();

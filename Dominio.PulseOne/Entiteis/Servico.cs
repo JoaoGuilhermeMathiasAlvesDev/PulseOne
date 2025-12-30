@@ -13,6 +13,8 @@ namespace Dominio.PulseOne.Entiteis
         public double Preco { get; private set; }
         public int Duracao { get; private set; }
 
+        protected Servico() { }
+
         public Servico(string nome, double preco)
         {
              DefinirSerivco(nome, preco);

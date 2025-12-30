@@ -14,6 +14,7 @@ namespace Dominio.PulseOne.Entiteis.ObjectValue
         public string Estado { get; private set; }
         public string CEP { get; private set; }
 
+        protected Endereco() { }
         public Endereco(string rua, string numero, string cidade, string estado, string cep)
         {
             //todo  Validações aqui

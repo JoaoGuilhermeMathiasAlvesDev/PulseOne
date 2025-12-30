@@ -20,6 +20,7 @@ namespace Dominio.PulseOne.Entiteis
 
         public double Troco { get; private set; }
 
+        protected Recepcao() { }
 
         public Recepcao(Guid atendimento)
         {

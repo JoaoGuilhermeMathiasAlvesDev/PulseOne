@@ -26,7 +26,7 @@ namespace Infectutura.PulseOne.Mapping
              .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasOne(x => x.Estabelecimento)
-                .WithMany()
+                .WithMany(e=> e.Funcionarios)
                 .HasForeignKey(x => x.EstabelecimentoId)
                 .OnDelete(DeleteBehavior.Cascade);
 

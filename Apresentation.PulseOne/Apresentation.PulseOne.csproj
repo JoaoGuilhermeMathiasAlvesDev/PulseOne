@@ -7,7 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.22">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Aplication.PulseOne\Aplication.PulseOne.csproj" />
+    <ProjectReference Include="..\Dominio.PulseOne\Dominio.PulseOne.csproj" />
+    <ProjectReference Include="..\Infectutura.Ioc.PulseOne\Infectutura.Ioc.PulseOne.csproj" />
+    <ProjectReference Include="..\Infectutura.PulseOne\Infectutura.PulseOne.csproj" />
   </ItemGroup>
 
 </Project>

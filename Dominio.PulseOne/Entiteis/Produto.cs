@@ -17,6 +17,8 @@ namespace Dominio.PulseOne.Entiteis
         public Categoria Categoria { get; set; }
         public bool Disponivel { get; private set; }
 
+        protected Produto() { }
+
         public Produto(string nome, double preco, int estoque,Guid categoriaId)
         {
             DefinirDados(nome, preco, estoque,categoriaId);

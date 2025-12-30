@@ -13,7 +13,7 @@ namespace Infectutura.PulseOne.Reposotory
     {
         private readonly PulseOneContext _context;
 
-        public EstabelecimentoRepository(PulseOneContext context) : base(context) { 
+        public EstabelecimentoRepository(PulseOneContext context) : base(context) 
         {
             _context = context;
         }

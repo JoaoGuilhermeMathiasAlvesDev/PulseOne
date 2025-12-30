@@ -16,8 +16,10 @@ namespace Dominio.PulseOne.Entiteis
         public Servico Servicos { get; set; }
 
         public DateTime DataHora { get;private set; }
-
         public StatusCliente Status { get; set; }
+
+
+        protected Agendamento() { }
 
         public Agendamento(Guid clienteId, Guid profissionalId,Guid servicoId,DateTime datahora,int status)
         {

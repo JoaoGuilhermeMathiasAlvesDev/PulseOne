@@ -11,6 +11,7 @@ namespace Infectutura.PulseOne.Data
     public class PulseOneContext : DbContext
     {
         public PulseOneContext(DbContextOptions<PulseOneContext>options) :base(options) { }
+
         public DbSet<Agendamento> Agendamentos { get; set; }
         public DbSet<Atendimento> Atendimentos { get; set; }
         public DbSet<Categoria> Categorias { get; set; }

@@ -18,6 +18,8 @@ namespace Dominio.PulseOne.Entiteis
 
         public bool Finalizado { get; set; }
 
+        protected Atendimento() { }
+
         public Atendimento(Guid clienteId, Guid agendamento)
         {
             DefinirAtendimento(clienteId, agendamento);
