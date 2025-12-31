@@ -35,6 +35,7 @@ namespace Aplication.PulseOne.Servicos
             var adicionarNovoUsuario = new Usuario(model.Email, model.Senha, perfil);
 
             await _uofw.Usuarios.Adiconionar(adicionarNovoUsuario);
+            await _uofw.CommitTransactionAsync();
 
         }
 
@@ -52,6 +53,7 @@ namespace Aplication.PulseOne.Servicos
             var atualizarUsuario = new Usuario(model.NovaSenha, model.Email, perfil);
 
             await _uofw.Usuarios.Atualizar(atualizarUsuario);
+            await _uofw.CommitTransactionAsync();
         }
 
         public async Task<UsuarioModel> ObterUsuario(Guid id)
@@ -70,14 +72,28 @@ namespace Aplication.PulseOne.Servicos
             return result;
         }
 
-        public Task<List<UsuarioModel>> ObterUsuarios()
+        public async  Task<List<UsuarioModel>> ObterUsuarios(int pagina = 0  , int tamanhoPagina = 0)
         {
-            throw new NotImplementedException();
+            var usuarios = await _uofw.Usuarios.ObterTodos<Usuario>(pagina,tamanhoPagina);
+
+            return usuarios.Select( u => new UsuarioModel
+            {
+                Id = u.Id,
+                Email = u.Email,
+                Perfil = u.Perfil,
+
+            }).ToList();
         }
 
-        public Task Remover(Guid id)
+        public async Task Remover(Guid id)
         {
-            throw new NotImplementedException();
+            var usuario =await _uofw.Usuarios.ObterPorId(id);
+
+            if (usuario == null)
+                throw new ArgumentNullException("id");
+
+           await _uofw.Usuarios.Remover(usuario);
+           await _uofw.CommitTransactionAsync();
         }
     }
 }
