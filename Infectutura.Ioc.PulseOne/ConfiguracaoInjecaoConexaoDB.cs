@@ -1,4 +1,5 @@
-﻿using Infectutura.PulseOne.Data;
+﻿using Aplication.PulseOne.Servicos;
+using Infectutura.PulseOne.Data;
 using Infectutura.PulseOne.IRepository.Base;
 using Infectutura.PulseOne.IRepository.IUnitOfWork;
 using Infectutura.PulseOne.Reposotory;
@@ -10,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -48,8 +50,24 @@ namespace Infectutura.Ioc.PulseOne
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         }
+        public static void InjeicaoDeIdependenciaServices(this IServiceCollection services,IConfiguration configuration)
+        {
+            var asemblyRepository = typeof(UsuarioServices).Assembly;
 
+            var servicos = asemblyRepository.GetTypes().
+                Where(s => s.IsClass && !s.IsAbstract && s.Name.EndsWith("Services")); 
 
+            foreach(var servico in servicos)
+            {
+                var interfaceType = servico.GetInterfaces().FirstOrDefault(i => i.Name == $"I{servico.Name}");
+
+                if (interfaceType != null)
+                {
+                    services.AddScoped(interfaceType, servico);
+                }
+            }
+
+        }
 
     }
 }

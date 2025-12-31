@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Aplication.PulseOne\Aplication.PulseOne.csproj" />
     <ProjectReference Include="..\Infectutura.PulseOne\Infectutura.PulseOne.csproj" />
   </ItemGroup>
 
