@@ -11,7 +11,7 @@ namespace Dominio.PulseOne.Entiteis
         public string Senha {  get;private set; }
         public PerfilEnum Perfil { get; set; }
 
-        protected Usuario() { }
+        public Usuario() { }
 
         public Usuario(string email,string senha,int perfilEnum)
         {
@@ -36,6 +36,11 @@ namespace Dominio.PulseOne.Entiteis
             Email = email;
             Senha = senha;
             Perfil = ConverterPerfil(perfilInt);
+        }
+
+        public bool ConfirmaSenha(string senha, string confirmarSenha)
+        {
+            return senha == confirmarSenha;
         }
 
         private PerfilEnum ConverterPerfil(int valor)

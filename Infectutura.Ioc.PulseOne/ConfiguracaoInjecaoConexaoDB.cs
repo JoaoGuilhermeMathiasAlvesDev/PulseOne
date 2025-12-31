@@ -27,17 +27,11 @@ namespace Infectutura.Ioc.PulseOne
 
         public static void InjeicaoDeIdependenciaRepository(this IServiceCollection services, IConfiguration configuration)
         {
-            // Obtém o Assembly (o projeto compilado) onde a RepositoryBase está. 
-            // Isso permite ao código "escanear" todos os tipos existentes nesse projeto.
             var asemblyRepository = typeof(RepositoryBase<>).Assembly;
 
-            // Busca no projeto todos os tipos que são classes concretas 
-            // (não abstratas) e que seguem a convenção de nomenclatura terminando em "Repository".
             var repositorios = asemblyRepository.GetTypes()
                 .Where(r => r.IsClass && !r.IsAbstract && r.Name.EndsWith("Repository"));
 
-            // Para cada classe encontrada, busca-se uma interface 
-            // que siga o contrato "I" + NomeDaClasse (ex: ClienteRepository -> IClienteRepository).
             foreach (var repository in repositorios)
             {
 
@@ -46,7 +40,6 @@ namespace Infectutura.Ioc.PulseOne
 
                 if (interfaceType != null)
                 {
-                    // Registra com tempo de vida 'Scoped' (uma instância por requisição HTTP).
                     services.AddScoped(interfaceType, repository);
                 }
             }

@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Dominio.PulseOne\Dominio.PulseOne.csproj" />
+    <ProjectReference Include="..\Infectutura.PulseOne\Infectutura.PulseOne.csproj" />
+  </ItemGroup>
+
 </Project>
