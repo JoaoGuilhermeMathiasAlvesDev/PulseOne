@@ -8,7 +8,7 @@ namespace Infectutura.PulseOne.IRepository.Base
 {
     public interface IRepositoryBase<T> where T : class
     {
-        Task Adiconionar(T entity);
+        Task Adicionar(T entity);
         Task Atualizar(T entity);
         Task<T> ObterPorId(Guid Id);
         Task<List<T>> ObterTodos<T>(int pagina, int tamanhoPagina) where T : class;

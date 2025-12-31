@@ -24,7 +24,7 @@ namespace Aplication.PulseOne.Servicos
         public async Task Adicionar(AdicionarUsuarioModel model)
         {
             if (model is null)
-                throw new ArgumentNullException("Objeto não pode ser vazio.", HttpStatusCode.BadRequest.ToString());
+                throw new ArgumentNullException("Objeto não pode ser vazio.");
 
             var usuario = new Usuario();
 
@@ -34,14 +34,14 @@ namespace Aplication.PulseOne.Servicos
             int perfil = (int)model.Perfil;
             var adicionarNovoUsuario = new Usuario(model.Email, model.Senha, perfil);
 
-            await _uofw.Usuarios.Adiconionar(adicionarNovoUsuario);
+            await _uofw.Usuarios.Adicionar(adicionarNovoUsuario);
             await _uofw.CommitTransactionAsync();
         }
 
         public async Task Atualizar(AtualizarUsuarioModel model)
         {
             if (model is null)
-                throw new ArgumentNullException("Objeto não pode ser vazio.", HttpStatusCode.BadRequest.ToString());
+                throw new ArgumentNullException("Objeto não pode ser vazio.");
 
             var usuario = new Usuario();
 
@@ -71,11 +71,11 @@ namespace Aplication.PulseOne.Servicos
             return result;
         }
 
-        public async  Task<List<UsuarioModel>> ObterUsuarios(int pagina = 0  , int tamanhoPagina = 0)
+        public async Task<List<UsuarioModel>> ObterUsuarios(int pagina = 0, int tamanhoPagina = 0)
         {
-            var usuarios = await _uofw.Usuarios.ObterTodos<Usuario>(pagina,tamanhoPagina);
+            var usuarios = await _uofw.Usuarios.ObterTodos<Usuario>(pagina, tamanhoPagina);
 
-            return usuarios.Select( u => new UsuarioModel
+            return usuarios.Select(u => new UsuarioModel
             {
                 Id = u.Id,
                 Email = u.Email,
@@ -86,13 +86,13 @@ namespace Aplication.PulseOne.Servicos
 
         public async Task Remover(Guid id)
         {
-            var usuario =await _uofw.Usuarios.ObterPorId(id);
+            var usuario = await _uofw.Usuarios.ObterPorId(id);
 
             if (usuario == null)
-                throw new ArgumentNullException("id");
+                throw new ArgumentNullException("id não encontrado. por favor digiti um Id existente.");
 
-           await _uofw.Usuarios.Remover(usuario);
-           await _uofw.CommitTransactionAsync();
+            await _uofw.Usuarios.Remover(usuario);
+            await _uofw.CommitTransactionAsync();
         }
     }
 }

@@ -18,7 +18,7 @@ namespace Infectutura.PulseOne.Reposotory
             _context = context;
         }
 
-        public async Task Adiconionar(T entity)
+        public async Task Adicionar(T entity)
         {
             await _context.Set<T>().AddAsync(entity);
 
