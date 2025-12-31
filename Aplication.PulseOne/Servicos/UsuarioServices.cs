@@ -36,7 +36,6 @@ namespace Aplication.PulseOne.Servicos
 
             await _uofw.Usuarios.Adiconionar(adicionarNovoUsuario);
             await _uofw.CommitTransactionAsync();
-
         }
 
         public async Task Atualizar(AtualizarUsuarioModel model)
