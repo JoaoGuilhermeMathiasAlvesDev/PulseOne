@@ -9,6 +9,8 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.BancoDados(builder.Configuration);
+builder.Services.InjeicaoDeIdependenciaRepository(builder.Configuration);
+builder.Services.InjeicaoDeIdependenciaServices(builder.Configuration);
 
 var app = builder.Build();
 
