@@ -1,4 +1,5 @@
 ﻿using Aplication.PulseOne.IServicos;
+using Aplication.PulseOne.Logic;
 using Aplication.PulseOne.Models.Usuario;
 using Dominio.PulseOne.Entiteis;
 using Dominio.PulseOne.Entiteis.Enum;
@@ -25,14 +26,8 @@ namespace Aplication.PulseOne.Servicos
         {
             if (model is null)
                 throw new ArgumentNullException("Objeto não pode ser vazio.");
-
-            var usuario = new Usuario();
-
-            if (!usuario.ConfirmaSenha(model.Senha, model.ConfirmarSenhar))
-                throw new Exception("As senha não e igual do Confirma Senhar! por gentilezar digita Novamente.");
-
-            int perfil = (int)model.Perfil;
-            var adicionarNovoUsuario = new Usuario(model.Email, model.Senha, perfil);
+            
+            var adicionarNovoUsuario = UsuarioLogic.PrepararNovoUsuario(model);
 
             await _uofw.Usuarios.Adicionar(adicionarNovoUsuario);
             await _uofw.CommitTransactionAsync();
@@ -40,18 +35,15 @@ namespace Aplication.PulseOne.Servicos
 
         public async Task Atualizar(AtualizarUsuarioModel model)
         {
-            if (model is null)
-                throw new ArgumentNullException("Objeto não pode ser vazio.");
+          
+            var usuarioExistente = await _uofw.Usuarios.ObterPorId(model.Id);
+            
+            if (usuarioExistente is null)
+                throw new Exception("Usuário não encontrado.");
 
-            var usuario = new Usuario();
+            UsuarioLogic.AtualizarEntidade(usuarioExistente, model);
 
-            if (!usuario.ConfirmaSenha(model.NovaSenha, model.ConfirmarSenhar))
-                throw new Exception("As senha não e igual do Confirma Senhar! por gentilezar digita Novamente.");
-
-            int perfil = (int)model.Perfil;
-            var atualizarUsuario = new Usuario(model.NovaSenha, model.Email, perfil);
-
-            await _uofw.Usuarios.Atualizar(atualizarUsuario);
+            await _uofw.Usuarios.Atualizar(usuarioExistente);
             await _uofw.CommitTransactionAsync();
         }
 
@@ -61,27 +53,14 @@ namespace Aplication.PulseOne.Servicos
 
             var usuario = await _uofw.Usuarios.ObterPorId(id);
 
-            var result = new UsuarioModel
-            {
-                Id = id,
-                Email = usuario.Email,
-                Perfil = usuario.Perfil,
-            };
-
-            return result;
+            return UsuarioLogic.MapearParaModel(usuario);
         }
 
         public async Task<List<UsuarioModel>> ObterUsuarios(int pagina = 0, int tamanhoPagina = 0)
         {
             var usuarios = await _uofw.Usuarios.ObterTodos<Usuario>(pagina, tamanhoPagina);
 
-            return usuarios.Select(u => new UsuarioModel
-            {
-                Id = u.Id,
-                Email = u.Email,
-                Perfil = u.Perfil,
-
-            }).ToList();
+            return usuarios.Select(UsuarioLogic.MapearParaModel).ToList();
         }
 
         public async Task Remover(Guid id)
